@@ -43,8 +43,24 @@
   border: 1px solid black;
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
 .search {
-  padding: 1em;
+  display: flex;
+}
+
+.search-box {
+  /* margin: 1rem 0; */
+  /* padding: 1em; */
+}
+
+.search-btn {
+  cursor: pointer;
 }
 
 .res-logo {
@@ -54,4 +70,20 @@
 .filter-btn {
   cursor: pointer;
   margin: 1rem 0;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shimmer-card {
+  margin: 1rem;
+  width: 250px;
+  height: 400px;
+  background-color: #f0f0f0;
+}
+
+.login {
+  cursor: pointer;
 }
