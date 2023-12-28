@@ -7,7 +7,6 @@ const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
-//   console.log(resId);
 
   useEffect(() => {
     fetchMenu();
@@ -16,12 +15,9 @@ const RestaurantMenu = () => {
   const fetchMenu = async () => {
     let data = await fetch(MENU_API + resId);
     const json = await data.json();
-    // console.log(json.data.cards[0].card.card.info);
-    // console.log(json?.data);
+
     setResInfo(json?.data);
   };
-
-  //   console.log(resInfo?.cards[0]?.card?.card?.info);
 
   if (resInfo === null) return <Shimmer />;
 
@@ -30,10 +26,6 @@ const RestaurantMenu = () => {
 
   const { itemCards } =
     resInfo?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
-
-//   console.log(itemCards[0]);
-
-  //   data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[5].card.card.itemCards[6].card.info.name
 
   return (
     <div className="menu">

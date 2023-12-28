@@ -15,6 +15,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(RESTAURANTS_API);
+    // console.log(data);
     const json = await data.json();
     // console.log(json);
     setListOfRestaurants(
@@ -26,7 +27,7 @@ const Body = () => {
   };
 
   // console.log("body rendered");
-  //   console.log(listOfRestaurants);
+  // console.log(listOfRestaurants);
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -66,8 +67,11 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <Link to={"/restaurants/" + restaurant.info.id}>
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
           </Link>
         ))}
       </div>

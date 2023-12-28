@@ -92,3 +92,8 @@ a {
 .login {
   cursor: pointer;
 }
+
+.user-card {
+  padding: 1em;
+  border: 1px solid black;
+}
