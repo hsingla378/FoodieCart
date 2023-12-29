@@ -13,14 +13,14 @@ export const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
+    <div className="font-medium header flex justify-between items-center px-6 py-2 shadow-md text-white mb-4 bg-green-600">
       <div className="logo-container">
         <Link to="/">
-          <img className="logo" src={LOGO_URL} />
+          <img className="w-24" src={LOGO_URL} />
         </Link>
       </div>
       <div className="nav-items">
-        <ul>
+        <ul className=" flex gap-6">
           <li>Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
