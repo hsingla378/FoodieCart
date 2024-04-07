@@ -1,18 +1,18 @@
-import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import RestaurantCard, { withOpenLabel } from "./RestaurantCard";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { RESTAURANTS_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const RestaurantCardOpened = withOpenLabel(RestaurantCard);
 
   const fetchData = async () => {
     const data = await fetch(RESTAURANTS_API);
@@ -31,19 +31,23 @@ const Body = () => {
     return <h1>Looks like you are offline! Please check your internet.</h1>;
   }
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="my-4 ">
-      <div className="flex items-center px-4 gap-4">
-        <div className="flex gap-4 my-4 p-4">
+      <div className="flex items-center px-4 gap-4 justify-center flex-col md:flex-row">
+        <div className="flex gap-4 p-4">
           <input
             type="text"
             className="border border-solid border-black py-2 px-4 rounded-md"
             placeholder="Search Restaurant"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-          ></input>
+          />
           <button
             className="bg-green-500 p-4 text-white font-medium  rounded-md"
             onClick={() => {
@@ -67,14 +71,28 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div>
+          <input
+            type="text"
+            className="border border-solid border-black py-2 px-4 rounded-md"
+            placeholder="UserName"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="flex flex-wrap items-center">
+      <div className="flex flex-wrap items-center justify-center">
         {filteredRestaurants.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {/* If the restaurant is open the show the open table */}
+            {restaurant.info.isOpen ? (
+              <RestaurantCardOpened resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
