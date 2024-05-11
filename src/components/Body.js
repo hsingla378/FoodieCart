@@ -43,6 +43,7 @@ const Body = () => {
         <div className="flex gap-4 p-4">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid border-black py-2 px-4 rounded-md"
             placeholder="Search Restaurant"
             value={searchText}
@@ -87,6 +88,7 @@ const Body = () => {
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
+            {/* {console.log("restaurant", restaurant)} */}
             {/* If the restaurant is open the show the open table */}
             {restaurant.info.isOpen ? (
               <RestaurantCardOpened resData={restaurant} />

@@ -36,6 +36,9 @@ export const Header = () => {
           <li className="font-bold text-xl">
             <Link to="/cart">Cart ({cartItems.length} items)</Link>
           </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
           <button
             className="login"
             onClick={() =>

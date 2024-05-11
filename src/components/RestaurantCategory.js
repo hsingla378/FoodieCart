@@ -14,9 +14,7 @@ const RestaurantCategory = ({ data, showItems, index, setShowIndex }) => {
         className=" flex justify-between cursor-pointer bg-gray-100 w-full p-4 hover:bg-slate-200"
         onClick={handleClick}
       >
-        <span className="font-bold text-base">
-          {data.title} ({data.itemCards.length})
-        </span>
+        <span className="font-bold text-base">{data.title} ({data.itemCards.length})</span>
         <span>⬇️</span>
       </div>
       {/* Accordion Body */}

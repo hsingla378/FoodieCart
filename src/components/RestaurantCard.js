@@ -10,7 +10,10 @@ const RestaurantCard = ({ resData }) => {
   const { loggedInUser } = useContext(UserContext);
 
   return (
-    <div className="m-4 p-4 bg-gray-100 w-[250px] rounded-md h-full hover:bg-gray-200">
+    <div
+      data-testid="resCard"
+      className="m-4 p-4 bg-gray-100 w-[250px] rounded-md h-full hover:bg-gray-200"
+    >
       <img
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
